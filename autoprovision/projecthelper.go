@@ -373,6 +373,14 @@ func configuration(configurationName string, scheme xcscheme.Scheme, xcproj xcod
 // mainTargetOfScheme return the main target
 func mainTargetOfScheme(proj xcodeproj.XcodeProj, scheme string) (xcodeproj.Target, error) {
 	projTargets := proj.Proj.Targets
+
+	var schemes []xcscheme.Scheme
+	schemes, err := proj.Schemes()
+	for _, scheme := range schemes {
+		log.Printf("Got scheme '%s' with path '%s'", scheme.Name, scheme.Path)
+	}
+
+
 	sch, _, err := proj.Scheme(scheme)
 	if err != nil {
 		return xcodeproj.Target{}, fmt.Errorf("failed to find scheme (%s) in project: %s", scheme, err)
