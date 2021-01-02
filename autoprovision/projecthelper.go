@@ -374,6 +374,7 @@ func configuration(configurationName string, scheme xcscheme.Scheme, xcproj xcod
 func mainTargetOfScheme(proj xcodeproj.XcodeProj, scheme string) (xcodeproj.Target, error) {
 	projTargets := proj.Proj.Targets
 
+	log.Printf("Get all schemes of %s", proj.Path)
 	var schemes []xcscheme.Scheme
 	schemes, err := proj.Schemes()
 	for _, scheme := range schemes {
